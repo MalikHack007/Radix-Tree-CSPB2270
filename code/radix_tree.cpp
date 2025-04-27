@@ -59,11 +59,6 @@ void RadixTree::giveSuggestions(vector<shared_ptr<rt_node>>& storageVector, cons
             [](const shared_ptr<rt_node>& a, const shared_ptr<rt_node>& b) {
                 return a->frequency < b->frequency; // ascending order
             });
-        //print out the top three suggestions
-        for(int i = 0; i < 3; i++){
-            cout << storageVector.back()->compref << endl;
-            storageVector.pop_back();
-        }
     }
     recorderString = "";
 }

@@ -13,10 +13,18 @@ file(GLOB USER_FILES
 "code/*.cpp"
 )
 
+
+
 # get folder name as project name
 get_filename_component(ProjectId ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 string(REPLACE " " "_" ProjectId ${ProjectId})
 project(${ProjectId})
 
+#find the external libraries
+find_package(jsoncpp CONFIG REQUIRED)
+
 # create an executable for main.cpp in app folder
 add_executable( run_app "app/main.cpp" ${USER_FILES})
+
+#set the target link
+target_link_libraries(run_app PRIVATE jsoncpp_lib)

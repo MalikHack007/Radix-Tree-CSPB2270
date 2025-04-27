@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Autocomplete Search Bar</title>
+    <style>
+        #searchContainer {
+            position: relative;
+            width: 300px;
+            margin: 50px auto;
+        }
+
+        #searchBar {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        #suggestionsDropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            border: 1px solid #ccc;
+            border-top: none;
+            background-color: white;
+            z-index: 1000;
+        }
+
+        .suggestion-item {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+            .suggestion-item:hover {
+                background-color: #f0f0f0;
+            }
+    </style>
+</head>
+<body>
+
+    <div id="searchContainer">
+        <input type="text" id="searchBar" placeholder="Search..." autocomplete="off">
+        <div id="suggestionsDropdown"></div>
+    </div>
+
+    <script>
+        const searchBar = document.getElementById('searchBar');
+        const suggestionsDropdown = document.getElementById('suggestionsDropdown');
+        let debounceTimer;
+
+        searchBar.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+
+            debounceTimer = setTimeout(async () => {
+                const query = searchBar.value.trim();
+                if (query.length === 0) {
+                    suggestionsDropdown.innerHTML = '';
+                    suggestionsDropdown.style.display = 'none';
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`http://localhost:8080/${encodeURIComponent(query)}`);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    const data = await response.json();
+
+                    if (data) {
+                        const suggestions = data.suggestions;
+
+                        if (suggestions.length > 0) {
+                            suggestionsDropdown.innerHTML = '';
+                            suggestions.forEach(suggestion => {
+                                const div = document.createElement('div');
+                                div.textContent = suggestion;
+                                div.classList.add('suggestion-item');
+                                div.addEventListener('click', () => {
+                                    searchBar.value = suggestion;
+                                    suggestionsDropdown.innerHTML = '';
+                                    suggestionsDropdown.style.display = 'none';
+                                });
+                                suggestionsDropdown.appendChild(div);
+                            });
+                            suggestionsDropdown.style.display = 'block';
+                        } else {
+                            suggestionsDropdown.innerHTML = '';
+                            suggestionsDropdown.style.display = 'none';
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error fetching suggestions:', error);
+                }
+            }, 150); // 150 ms debounce
+        });
+
+        // Hide dropdown if user clicks outside
+        document.addEventListener('click', (e) => {
+            if (!document.getElementById('searchContainer').contains(e.target)) {
+                suggestionsDropdown.innerHTML = '';
+                suggestionsDropdown.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
