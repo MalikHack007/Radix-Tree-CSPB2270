@@ -6,8 +6,15 @@
 
 ## give permission to running setUp.sh
 
-```python 
+```bash
 
-def hello(): print("Hello, world!") 
+chmod +x setUp.sh
 
 ``` 
+## Run the script
+
+```bash
+
+./setup.sh
+
+```
