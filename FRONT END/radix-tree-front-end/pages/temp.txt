@@ -1,0 +1,40 @@
+  return(
+    <div className="flex flex-col items-center mt-32 w-full">
+    <h1 className="text-5xl font-bold mb-6">Goggle</h1>
+    <div className="relative w-1/2">
+      <input
+        ref={inputRef}
+        type="text"
+        value={query}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          setCursorIndex(e.target.selectionStart);
+        }}
+        onClick={(e) => setCursorIndex(e.target.selectionStart)}
+        onKeyUp={(e) => setCursorIndex(e.target.selectionStart)}
+        className="w-full p-4 border border-gray-300 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Search..."
+      />
+      {suggestions.length > 0 && (
+        <div className="absolute mt-2 w-full bg-white border rounded shadow">
+          {suggestions.map((suggestion, index) => (
+            <div
+              key={index}
+              className={`px-4 py-2 cursor-pointer ${
+                index === highlightedIndex ? 'bg-blue-100' : ''
+              }`}
+              onMouseEnter={() => setHighlightedIndex(index)}
+              onClick={() => {
+                replaceWordAtCursor(suggestion);
+                setSuggestions([]);
+                setHighlightedIndex(-1);
+              }}
+            >
+              {suggestion}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+);
