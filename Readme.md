@@ -6,4 +6,8 @@
 
 ## give permission to running setUp.sh
 
-<pre> ```python def hello(): print("Hello, world!") ``` </pre>
+```python 
+
+def hello(): print("Hello, world!") 
+
+``` 
