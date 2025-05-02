@@ -72,4 +72,12 @@ int main(){
 
     svr.listen("0.0.0.0", 8080);
 
+    //vector<shared_ptr<rt_node>> storageVector;
+
+    //string prefix = "alrea";
+
+    //new_radix_tree.giveSuggestions(storageVector, "alrea");
+
+    return 0;
+
 }

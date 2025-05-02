@@ -24,6 +24,7 @@ void RadixTree::findPossibleWordsByPrefix(shared_ptr<rt_node>node, const string&
 
     //Look at each child of the node
     if(node->children.size() > 0){
+        //looking for a partial prefix match
         for (auto child : node->children){
             int commonPrefLen = getLenOfCommonPrefix(child->compref, prefix);
             //if a node with fully/partially matching prefix is found
@@ -38,20 +39,24 @@ void RadixTree::findPossibleWordsByPrefix(shared_ptr<rt_node>node, const string&
                 }
                 //if only partially matching
                 else{
+                    recorderString += child->compref;
                     //extract the remainder, and recursively call the function
                     string remainder = prefix.substr(commonPrefLen);
                     findPossibleWordsByPrefix(child, remainder, storageVector);
                     return; 
                 }
             }
-        } 
+        }
+        //if there is no prefix match, use the current node as starting point and recursively explore all the possible words.
+        for (auto child : node->children) {
+            recursive_trav_n_record(child, storageVector);
+        }
+        return;
     }
     //do nothing if no children 
 }
 
 void RadixTree::giveSuggestions(vector<shared_ptr<rt_node>>& storageVector, const string& prefix){
-    //initialize the recorder string to the first to the second to last character of the prefix
-    recorderString = prefix.substr(0, prefix.length() - 1);
 
     findPossibleWordsByPrefix(root, prefix, storageVector);
     if(storageVector.size() > 0){
