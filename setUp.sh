@@ -9,6 +9,15 @@ else
     echo "CMake is already installed."
 fi
 
+# Check if make is installed
+if ! command -v make &> /dev/null; then
+    echo "'make' not found. Installing..."
+    sudo apt-get update
+    sudo apt-get install -y build-essential
+else
+    echo "'make' is already installed."
+fi
+
 # Check for npm and install if not present
 if ! command -v npm &> /dev/null; then
     echo "npm not found. Installing Node.js and npm..."
