@@ -1,1 +1,0 @@
-/usr/bin/c++  -std=c++11 -Wall -g -rdynamic CMakeFiles/run_app.dir/app/main.cpp.o CMakeFiles/run_app.dir/code/radix_tree.cpp.o -o run_app 

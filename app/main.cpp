@@ -47,7 +47,6 @@ int main(){
         Json::Value json_response;
 
         if (storageVector.size() > 0) {
-            cout << "entered block" << endl;
             //store the top three suggestions in a json response
             for (int i = 0; i < 3; i++) {
                 json_response["suggestions"][i] = storageVector.back()->compref;

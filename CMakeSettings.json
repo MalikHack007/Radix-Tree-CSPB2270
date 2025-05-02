@@ -5,7 +5,7 @@
             "generator": "Ninja",
             "configurationType": "Debug",
             "inheritEnvironments": [ "msvc_x64_x64" ],
-            "buildRoot": "${projectDir}\\build\\${name}",
+            "buildRoot": "${projectDir}\\build",
             "installRoot": "${projectDir}\\out\\install\\${name}",
             "cmakeCommandArgs": "",
             "buildCommandArgs": "",
@@ -13,7 +13,7 @@
             "variables": [
                 {
                     "name": "CMAKE_TOOLCHAIN_FILE",
-                    "value": "${VCPKG_ROOT}/buildsystems/vcpkg.cmake",
+                    "value": "${env.VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
                     "type": "STRING"
                 }
             ]
