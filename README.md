@@ -23,6 +23,9 @@ To demonstrate this functionality:
 - The backend returns the **top 3 word suggestions** based on frequency.
 - Suggestions are displayed in an **HTML `<select>` menu** for user interaction.
 
+## Short explanation of the data structure implemented (Radix Tree)
+A **radix tree** is an optimized version of a simple trie. It reduces the number of nodes by **compressing paths**: if a node has only one child, it is merged with that child into a single node. For example, a trie that stores the word `"dog"` would typically look like `d → o → g`, but in a radix tree, it would be compressed into a single node containing `"dog"`, since each character leads to only one child. The word **"radix"** comes from Latin, meaning "root" or "basis." In a radix tree, all nodes with chidlren contain **a common prefix** shared by the node's children. This makes radix trees **fast and efficient** for storing large sets of strings that share common prefixes, such as words or IP addresses, especially when the data set is large. 
+
 ## How to Build and Run The Project
 
 ### Prerequisites:
