@@ -4,12 +4,21 @@
 
 #include<fstream>
 #include<sstream>
-#include <cctype>
+#include<cctype>
+#include<filesystem>
+
+#ifndef FILE_PATH
+#define FILE_PATH "./" // fallback
+#endif
 
 using namespace std;
 
 int main(){
-    ifstream file("../Files/frequency_list.txt"); 
+    filesystem::path pathToWordList = filesystem::path(FILE_PATH)/"frequency_list.txt";
+
+
+
+    ifstream file(pathToWordList); 
     //the file path is relative to the current working directory (where our executable/binary lives) that we are running 
     //the progran from
 

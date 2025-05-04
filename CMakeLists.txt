@@ -18,6 +18,10 @@ add_executable(run_app
   "app/main.cpp"
   "code/radix_tree.cpp")
 
+# define a preprocessor macro
+target_compile_definitions(run_app PRIVATE
+    FILE_PATH="${CMAKE_SOURCE_DIR}/Files"
+)
 
 # Use the correct target from jsoncpp
 target_link_libraries(run_app PRIVATE JsonCpp::JsonCpp) #use jsoncpp_lib for Visual Studio IDE
