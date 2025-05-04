@@ -30,8 +30,8 @@ A **radix tree** is an optimized version of a simple trie. It reduces the number
 
 ### Prerequisites:
 
-> **Note:** All command line instructions below are written for the `BASH` shell.  
-> If you are using some other shell, commands may differ.
+> **Note:** All command line instructions below are written for the `BASH` shell and assume you are on **Linux**.  
+> If you are using some other shell or on Windows/MacOS, please look up how to install these prerequisites accordingly.
 
 #### Set Up for Backend (c++ program):
 
