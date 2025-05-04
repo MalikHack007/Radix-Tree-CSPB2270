@@ -88,6 +88,8 @@ cmake --build build/
 cd build
 ./run_app
 ```
+>Note that with multi-config generators like Visual Studio 17 2022, the executable will be stored under a folder named after the name of the configuration. In that case, simply go to the folder for the debug configuration and you should be able to find the .exe or binary file run_app.
+
 #### To Run the Front End:
 ```bash
 cd "../FRONT END/radix-tree-front-end" #go to the FRONT END/radix-tree-front-end directory
