@@ -1,4 +1,6 @@
-﻿#include<radix_tree.h>
+﻿#define _HAS_STD_BYTE 0
+
+#include<radix_tree.h>
 #include<httplib.h>
 #include<json/json.h>
 
@@ -15,8 +17,6 @@ using namespace std;
 
 int main(){
     filesystem::path pathToWordList = filesystem::path(FILE_PATH)/"frequency_list.txt";
-
-
 
     ifstream file(pathToWordList); 
     //the file path is relative to the current working directory (where our executable/binary lives) that we are running 
