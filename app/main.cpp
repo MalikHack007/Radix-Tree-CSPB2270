@@ -1,6 +1,6 @@
-﻿#include"../code/radix_tree.h"
-#include "../code/httplib.h"
-#include"json/json.h"
+﻿#include<radix_tree.h>
+#include<httplib.h>
+#include<json/json.h>
 
 #include<fstream>
 #include<sstream>
@@ -9,7 +9,9 @@
 using namespace std;
 
 int main(){
-    ifstream file("Files/frequency_list.txt");
+    ifstream file("../Files/frequency_list.txt"); 
+    //the file path is relative to the current working directory (where our executable/binary lives) that we are running 
+    //the progran from
 
     string line;
 

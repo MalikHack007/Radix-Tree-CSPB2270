@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.10)
+cmake_minimum_required (VERSION 3.22)
 
 
 # set default build to debug
@@ -8,23 +8,22 @@ endif(NOT CMAKE_BUILD_TYPE)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall" CACHE INTERNAL "")
 
-# defince cmake variables for file locations
-file(GLOB USER_FILES 
-"code/*.cpp"
-)
-
-
-
-# get folder name as project name
-get_filename_component(ProjectId ${CMAKE_CURRENT_SOURCE_DIR} NAME)
-string(REPLACE " " "_" ProjectId ${ProjectId})
-project(${ProjectId})
+project("Radix-Tree")
 
 #find the external libraries
 find_package(jsoncpp CONFIG REQUIRED)
 
 # create an executable for main.cpp in app folder
-add_executable( run_app "app/main.cpp" ${USER_FILES})
+add_executable(run_app
+  "app/main.cpp"
+  "code/radix_tree.cpp")
 
-#set the target link
-target_link_libraries(run_app PRIVATE jsoncpp_lib)
+
+# Use the correct target from jsoncpp
+target_link_libraries(run_app PRIVATE JsonCpp::JsonCpp) #use jsoncpp_lib for Visual Studio IDE
+
+target_include_directories(
+  run_app
+  PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/code
+) #look for header files in code folder
