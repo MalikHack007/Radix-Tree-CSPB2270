@@ -103,5 +103,8 @@ npm run dev
 
 ## What does it do?
 
-The app has just one simple functionality: as you type in the input field on the front-end webpage, it continuously provides the top 3 word suggestions. It only suggests one word at a time. For example, if you've already typed "existing word" and want to continue typing more words, just separate them with a space — the app will then offer suggestions for the current word you're typing.
+The app has just one simple functionality: as you type in the input field on the front-end webpage, it continuously provides the top 3 word suggestions. It only suggests one word at a time. For example, if you've already typed "existing word" and want to continue typing more words, just separate them with a space — the app will then offer suggestions for the current word you're typing. 
+
+## Project Demo Video
+You can find the demo video [here](https://youtu.be/kCnfkny151w).
 
